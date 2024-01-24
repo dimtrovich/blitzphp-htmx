@@ -87,11 +87,18 @@ trait Controller
         return $success ? $this->back() : $this->back()->withInput();
     }
 
-    /**
-     * Verifie si la requete est htmx
-     */
-    protected function isHtmx(): bool
-    {
-        return $this->htmxRequest()->isHtmx();
-    }
+    public function __call(string $method, array $args = [])
+	{
+		if (method_exists($this->htmxRequest(), $method)) {
+			return call_user_func_array([$this->htmxRequest(), $method], $args);
+		}
+		if (method_exists($this->htmxResponse(), $method)) {
+			return call_user_func_array([$this->htmxResponse(), $method], $args);
+		}
+		if (method_exists($this->htmxRedirection(), $method)) {
+			return call_user_func_array([$this->htmxRedirection(), $method], $args);
+		}
+
+		return parent::__call($method, $args);
+	}
 }
