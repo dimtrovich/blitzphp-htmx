@@ -17,6 +17,8 @@ class Request extends BaseRequest
 {
     /**
      * Cree une requete htmx a partir de la requete de base
+     *
+     * @internal
      */
     public static function fromBase(BaseRequest $request): static
     {
@@ -46,7 +48,7 @@ class Request extends BaseRequest
     }
 
     /**
-     * Indicates that the request is triggered by Htmx.
+     * Indique que la requete est déclenchée par Htmx.
      */
     public function isHtmx(): bool
     {
@@ -54,7 +56,7 @@ class Request extends BaseRequest
     }
 
     /**
-     * Indicates that the request is via an element using hx-boost.
+     * Indique que la requete est faite via un élément utilisant hx-boost.
      */
     public function isBoosted(): bool
     {
@@ -62,8 +64,7 @@ class Request extends BaseRequest
     }
 
     /**
-     * True if the request is for history restoration
-     * after a miss in the local history cache.
+     * Verifie que la requete concerne la restauration de l'historique après une absence dans le cache de l'historique local.
      */
     public function isHistoryRestoreRequest(): bool
     {
@@ -71,7 +72,7 @@ class Request extends BaseRequest
     }
 
     /**
-     * The current URL of the browser.
+     * L'URL actuelle du navigateur.
      */
     public function hxCurrentUrl(): ?string
     {
@@ -79,7 +80,7 @@ class Request extends BaseRequest
     }
 
     /**
-     * The user response to an hx-prompt.
+     * La réponse de l'utilisateur à un hx-prompt.
      */
     public function hxPrompt(): ?string
     {
@@ -87,7 +88,7 @@ class Request extends BaseRequest
     }
 
     /**
-     * The id of the target element if it exists.
+     * L'identifiant de l'élément cible s'il existe.
      */
     public function hxTarget(): ?string
     {
@@ -95,7 +96,7 @@ class Request extends BaseRequest
     }
 
     /**
-     * The id of the triggered element if it exists.
+     * L'identifiant de l'élément déclenché, s'il existe.
      */
     public function hxTrigger(): ?string
     {
@@ -103,7 +104,7 @@ class Request extends BaseRequest
     }
 
     /**
-     * The name of the triggered element if it exists.
+     * Le nom de l'élément déclenché, s'il existe.
      */
     public function hxTriggerName(): ?string
     {
@@ -111,8 +112,7 @@ class Request extends BaseRequest
     }
 
     /**
-     * The value of the header is a JSON serialized
-     * version of the event that triggered the request.
+     * La valeur de l'en-tête est une version sérialisée JSON de l'événement qui a déclenché la requete.
      *
      * @see https://htmx.org/extensions/event-header/
      */
@@ -126,7 +126,7 @@ class Request extends BaseRequest
     }
 
     /**
-     * Helper method to get the Htmx header value
+     * Méthode d'aide pour obtenir la valeur de l'en-tête Htmx
      */
     private function htmxHeader(string $header): ?string
     {
@@ -142,7 +142,7 @@ class Request extends BaseRequest
     }
 
     /**
-     * Helper method to cast Htmx header to bool
+     * Méthode d'aide pour convertir l'en-tête Htmx en bool
      */
     private function htmxHeaderToBool(string $header): bool
     {
@@ -150,7 +150,7 @@ class Request extends BaseRequest
     }
 
     /**
-     * Checks this request type.
+     * {@inheritDoc}
      *
      * @param string $type HTTP verb or 'json' or 'ajax' or 'htmx' or 'boosted'
      */

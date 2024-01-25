@@ -19,8 +19,7 @@ class Redirection extends BaseRedirection
     use HtmxTrait;
 
     /**
-     * Sets the HX-Location to redirect
-     * without reloading the whole page.
+     * Définit l'emplacement HX à rediriger sans recharger la page entière.
      */
     public function hxLocation(
         string $path,
@@ -62,7 +61,7 @@ class Redirection extends BaseRedirection
     }
 
     /**
-     * Sets the HX-Redirect to URI to redirect to.
+     * Définit l'URI de redirection de HX-Redirect vers lequel rediriger.
      *
      * @param string $uri The URI to redirect to
      */
@@ -76,7 +75,7 @@ class Redirection extends BaseRedirection
     }
 
     /**
-     * Sets the HX-Refresh to true.
+     * Définit le HX-Refresh à true.
      */
     public function hxRefresh(): static
     {

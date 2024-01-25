@@ -20,6 +20,8 @@ class Response extends BaseResponse
 
     /**
      * Cree une reponse htmx a partir de la reponse de base
+     *
+     * @internal
      */
     public static function fromBase(BaseResponse $response): static
     {
@@ -39,25 +41,35 @@ class Response extends BaseResponse
     }
 
     /**
-     * Pushes a new url into the history stack.
+     * Renvoie une donnée flash dans les headers de la reponse htmx
+     *
+     * Ceci permet au frontend de recuperer et potentiellement afficher un popup du genre sweet alert
      */
-    public function withPushUrl(?string $url = null): static
+    public function hxFlash(string $message, string $type = 'success'): static
+    {
+        return $this->withHeader('BHX-Flash', json_encode(compact('message', 'type')));
+    }
+
+    /**
+     * Pousse une nouvelle url dans la pile de l'historique.
+     */
+    public function hxPushUrl(?string $url = null): static
     {
         return $this->withHeader('HX-Push-Url', $url ?? 'false');
     }
 
     /**
-     * Replaces the current URL in the location bar.
+     * Remplace l'URL actuelle dans la barre d'adresse.
      */
-    public function withReplaceUrl(?string $url = null): static
+    public function hxReplaceUrl(?string $url = null): static
     {
         return $this->withHeader('HX-Replace-Url', $url ?? 'false');
     }
 
     /**
-     * Allows you to specify how the response will be swapped.
+     * Permet de spécifier comment la réponse sera permutée.
      */
-    public function withReswap(string $method): static
+    public function hxReswap(string $method): static
     {
         $this->validateSwap($method, 'HX-Reswap');
 
@@ -65,27 +77,25 @@ class Response extends BaseResponse
     }
 
     /**
-     * A CSS selector that updates the target of the content
-     * update to a different element on the page.
+     * Sélecteur CSS qui modifie la cible de la mise à jour du contenu en la remplaçant par un autre élément de la page.
      */
-    public function withRetarget(string $selector): static
+    public function hxRetarget(string $selector): static
     {
         return $this->withHeader('HX-Retarget', $selector);
     }
 
     /**
-     * A CSS selector that allows you to choose which part
-     * of the response is used to be swapped in.
+     * Sélecteur CSS qui vous permet de choisir quelle partie de la réponse est utilisée pour être permutée.
      */
-    public function withReselect(string $selector): static
+    public function hxReselect(string $selector): static
     {
         return $this->withHeader('HX-Reselect', $selector);
     }
 
     /**
-     * Allows you to trigger client side events.
+     * Permet de déclencher des événements côté client.
      */
-    public function triggerClientEvent(string $name, array|string $params = '', string $after = 'receive'): static
+    public function hxTriggerClientEvent(string $name, array|string $params = '', string $after = 'receive'): static
     {
         $header = match ($after) {
             'receive' => 'HX-Trigger',
