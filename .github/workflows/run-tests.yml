@@ -1,6 +1,22 @@
 name: Tests
 
-on: [push, pull_request]
+on:
+  pull_request:
+    branches:
+      - 'main'
+    paths:
+      - 'src/**.php'
+      - 'spec/**.php'
+      - composer.json
+      - kahlan-config.php
+      - .github/workflows/run-tests.yml
+  push:
+    paths:
+      - 'src/**.php'
+      - 'spec/**.php'
+      - composer.json
+      - kahlan-config.php
+      - .github/workflows/run-tests.yml
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
