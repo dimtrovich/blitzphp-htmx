@@ -48,7 +48,7 @@ class Response extends BaseResponse
     public function hxFlash(string $message, string $type = 'success', array $additionals = []): static
     {
         $additionals = compact('message', 'type') + $additionals;
-        
+
         return $this->withHeader('BHX-Flash', json_encode($additionals));
     }
 
