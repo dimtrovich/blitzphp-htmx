@@ -45,9 +45,11 @@ class Response extends BaseResponse
      *
      * Ceci permet au frontend de recuperer et potentiellement afficher un popup du genre sweet alert
      */
-    public function hxFlash(string $message, string $type = 'success'): static
+    public function hxFlash(string $message, string $type = 'success', array $additionals = []): static
     {
-        return $this->withHeader('BHX-Flash', json_encode(compact('message', 'type')));
+        $additionals = compact('message', 'type') + $additionals;
+        
+        return $this->withHeader('BHX-Flash', json_encode($additionals));
     }
 
     /**
