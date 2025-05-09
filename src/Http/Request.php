@@ -3,7 +3,7 @@
 /**
  * This file is part of dimtrovich/blitzphp-htmx.
  *
- * (c) 2024 Dimitri Sitchet Tomkeu <devcode.dst@gmail.com>
+ * (c) 2025 Dimitri Sitchet Tomkeu <devcode.dst@gmail.com>
  *
  * For the full copyright and license information, please view
  * the LICENSE file that was distributed with this source code.
@@ -116,7 +116,7 @@ class Request extends BaseRequest
      *
      * @see https://htmx.org/extensions/event-header/
      */
-    public function hxTriggeringEvent(bool $toArray = true): null|array|object
+    public function hxTriggeringEvent(bool $toArray = true): array|object|null
     {
         if (! $this->hasHeader('Triggering-Event')) {
             return null;
