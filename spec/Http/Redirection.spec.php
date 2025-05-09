@@ -20,7 +20,7 @@ describe('Http / Redirection', function () {
     });
 
     describe('HxLocation', function () {
-        it('HXLocation fonctionne normalement', function() {
+        it('HXLocation fonctionne normalement', function () {
             $this->response = $this->response->hxLocation('foo');
 
             expect($this->response->hasHeader('HX-Location'))->toBeTruthy();
@@ -44,7 +44,7 @@ describe('Http / Redirection', function () {
             expect($this->response->getHeaderLine('HX-Location'))->toBe(json_encode(['path' => '/foo3?page=1&sort=ASC#top']));
         });
 
-        it('HxLocation avec la source et l\'evenement', function() {
+        it('HxLocation avec la source et l\'evenement', function () {
             $this->response = $this->response->hxLocation(path: '/foo', source: '#myElem', event: 'doubleclick');
 
             expect($this->response->hasHeader('HX-Location'))->toBeTruthy();
@@ -53,7 +53,7 @@ describe('Http / Redirection', function () {
             expect(200)->toBe($this->response->getStatusCode());
         });
 
-        it('HxLocation avec la cible et le swap', function() {
+        it('HxLocation avec la cible et le swap', function () {
             $this->response = $this->response->hxLocation(path: '/foo', target: '#myDiv', swap: 'outerHTML');
 
             expect($this->response->hasHeader('HX-Location'))->toBeTruthy();
@@ -62,7 +62,7 @@ describe('Http / Redirection', function () {
             expect(200)->toBe($this->response->getStatusCode());
         });
 
-        it('HxLocation avec les valeurs et entetes', function() {
+        it('HxLocation avec les valeurs et entetes', function () {
             $this->response = $this->response->hxLocation(path: '/foo', values: ['myVal' => 'My Value'], headers: ['myHeader' => 'My Value']);
 
             expect($this->response->hasHeader('HX-Location'))->toBeTruthy();
@@ -71,9 +71,9 @@ describe('Http / Redirection', function () {
             expect(200)->toBe($this->response->getStatusCode());
         });
 
-        it('HxLocation leve une exception en cas d\'arguments non valide', function() {
-            expect(fn() => $this->response = $this->response->hxLocation(path: '/foo', swap: 'foo'))
-                ->toThrow(new InvalidArgumentException());        
+        it('HxLocation leve une exception en cas d\'arguments non valide', function () {
+            expect(fn () => $this->response = $this->response->hxLocation(path: '/foo', swap: 'foo'))
+                ->toThrow(new InvalidArgumentException());
         });
     });
 });
