@@ -3,7 +3,7 @@
 /**
  * This file is part of dimtrovich/blitzphp-htmx.
  *
- * (c) 2025 Dimitri Sitchet Tomkeu <devcode.dst@gmail.com>
+ * (c) 2024 Dimitri Sitchet Tomkeu <devcode.dst@gmail.com>
  *
  * For the full copyright and license information, please view
  * the LICENSE file that was distributed with this source code.
@@ -30,6 +30,11 @@ class Redirection extends BaseRedirection
         ?array $values = null,
         ?array $headers = null
     ): static {
+        // single_service
+        if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://')) {
+            $path = (string) service('uri', $path, false)->withScheme('')->setHost('');
+        }
+
         $data = ['path' => '/' . ltrim($path, '/')];
 
         if ($source !== null) {
