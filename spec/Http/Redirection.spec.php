@@ -71,6 +71,15 @@ describe('Http / Redirection', function () {
             expect(200)->toBe($this->response->getStatusCode());
         });
 
+        it('HxLocation avec le selecteur', function () {
+            $this->response = $this->response->hxLocation(path: '/foo', select: '#hx-container > *');
+
+            expect($this->response->hasHeader('HX-Location'))->toBeTruthy();
+            $expected = json_encode(['path' => '/foo', 'select' => '#hx-container > *']);
+            expect($expected)->toBe($this->response->getHeaderLine('HX-Location'));
+            expect(200)->toBe($this->response->getStatusCode());
+        });
+
         it('HxLocation leve une exception en cas d\'arguments non valide', function () {
             expect(fn () => $this->response = $this->response->hxLocation(path: '/foo', swap: 'foo'))
                 ->toThrow(new InvalidArgumentException());

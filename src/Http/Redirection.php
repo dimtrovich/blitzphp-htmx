@@ -27,6 +27,7 @@ class Redirection extends BaseRedirection
         ?string $event = null,
         ?string $target = null,
         ?string $swap = null,
+        ?string $select = null,
         ?array $values = null,
         ?array $headers = null
     ): static {
@@ -52,6 +53,10 @@ class Redirection extends BaseRedirection
         if ($swap !== null) {
             $this->validateSwap($swap);
             $data['swap'] = $swap;
+        }
+
+        if ($select !== null) {
+            $data['select'] = $select;
         }
 
         if (! empty($values)) {
