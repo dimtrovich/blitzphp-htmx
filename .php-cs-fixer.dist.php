@@ -3,7 +3,7 @@
 /**
  * This file is part of dimtrovich/blitzphp-htmx.
  *
- * (c) 2025 Dimitri Sitchet Tomkeu <devcode.dst@gmail.com>
+ * (c) 2026 Dimitri Sitchet Tomkeu <devcode.dst@gmail.com>
  *
  * For the full copyright and license information, please view
  * the LICENSE file that was distributed with this source code.
@@ -43,5 +43,5 @@ return Factory::create(new Blitz(), $overrides, $options)->forLibrary(
     'dimtrovich/blitzphp-htmx',
     'Dimitri Sitchet Tomkeu',
     'devcode.dst@gmail.com',
-    date('Y')
+    date('Y'),
 );
