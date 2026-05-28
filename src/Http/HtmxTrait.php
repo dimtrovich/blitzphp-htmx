@@ -3,7 +3,7 @@
 /**
  * This file is part of dimtrovich/blitzphp-htmx.
  *
- * (c) 2025 Dimitri Sitchet Tomkeu <devcode.dst@gmail.com>
+ * (c) 2026 Dimitri Sitchet Tomkeu <devcode.dst@gmail.com>
  *
  * For the full copyright and license information, please view
  * the LICENSE file that was distributed with this source code.
@@ -38,7 +38,7 @@ trait HtmxTrait
                 'Option "%s" is not a valid variable for %s. A valid option has to be one of: %s',
                 $option,
                 $field,
-                implode(', ', $this->swapOptions)
+                implode(', ', $this->swapOptions),
             ));
         }
 
